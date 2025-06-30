@@ -30,13 +30,13 @@ function sortear() {
     let resultado = document.getElementById('resultado');
     resultado.innerHTML = `<label class="texto__paragrafo">Números sorteados: ${sorteados}</label>`// para concatenar a tag do HTML com a var(sorteados) colocamos a tag entre craze
 
-    alterarStatusBotao();
+    ativarBotaoReiniciar();
 }
 
 function obterNumeroAleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);//retorna um número aleatório entre os valores especificados Documentação: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random 
 }
-
+/*
 function alterarStatusBotao() {
     let btReiniciar = document.getElementById('btn-reiniciar');
     if (btReiniciar.classList.contains('container__botao-desabilitado')) {
@@ -47,5 +47,24 @@ function alterarStatusBotao() {
         btReiniciar.classList.remove('container__botao');
         btReiniciar.classList.add('container__botao-desabilitado');
     }
-}
+}*/
 
+function ativarBotaoReiniciar() {
+    let btReiniciar = document.getElementById('btn-reiniciar');
+    btReiniciar.classList.remove('container__botao-desabilitado');
+    btReiniciar.classList.add('container__botao');
+
+    // Adiciona evento para desativar ao clicar
+    btReiniciar.onclick = function () {
+        desativarBotaoReiniciar();
+        // aqui você pode chamar a função de reinício, se houver
+    };
+}
+function desativarBotaoReiniciar() {
+    let btReiniciar = document.getElementById('btn-reiniciar');
+    btReiniciar.classList.remove('container__botao');
+    btReiniciar.classList.add('container__botao-desabilitado');
+
+    // Remove o evento para evitar múltiplos cliques
+    btReiniciar.onclick = null;
+}
